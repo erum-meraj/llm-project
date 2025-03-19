@@ -39,17 +39,14 @@ def query_ollama(text, system_prompt):
     return  response['message']['content'] # Convert response to JSON
 
 def main():
-    csv_path = "dataset_shortened.csv"  # Path to your CSV file
+    csv_path = "dataset_shortened.csv"  
     format_examples = load_format(csv_path)
     system_prompt = generate_prompt(format_examples)
 
-    while True:
-        # user_input = input("Enter a medical post (or type 'exit' to quit): ")
-        # if user_input.lower() == "exit":
-        #     break
-        user_input = pdf_text()
-        structured_output = query_ollama(user_input, system_prompt)
-        print("\nExtracted Information (JSON):\n", json.dumps(structured_output, indent=4))
+    
+    user_input = pdf_text()
+    structured_output = query_ollama(user_input, system_prompt)
+    print("\nExtracted Information (JSON):\n", json.dumps(structured_output, indent=4))
 
 if __name__ == "__main__":
     main()
